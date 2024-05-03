@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo from "/logo.png";
 import { Link, NavLink } from "react-router-dom";
-import { FiMenu } from "react-icons/fi";
-import { RxCross1 } from "react-icons/rx";
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
 
@@ -31,7 +29,7 @@ const Navbar = () => {
           <summary>Menu</summary>
           <ul className="p-2">
             <li>
-              <Link>All</Link>
+              <Link to={'/menu'}>All</Link>
             </li>
             <li>
               <Link>Salad</Link>

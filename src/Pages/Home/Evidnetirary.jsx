@@ -3,7 +3,7 @@ import chefImg from "/images/home/testimonials/testimonials.png";
 import { FaStar } from "react-icons/fa";
 const Evidnetirary = () => {
   return (
-    <div className="my-12 flex flex-col md:flex-row items-center justify-between gap-12">
+    <div className="my-12 flex flex-col md:flex-row items-center justify-between gap-12 px-4 md:px-0">
       <div className="md:w-1/2">
         <img src={chefImg} alt="" />
       </div>

@@ -61,7 +61,7 @@ const Speacial = () => {
         <h2 className="title md:w-[520px]">Awesome Dishes From Our Menu</h2>
       </div>
       <div className="px-[25px]">
-        <Slider {...settings}>
+        <Slider {...settings} >
           {recipies.map((recipe, index) => (
             <Cards key={index} recipe={recipe}></Cards>
           ))}

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const Cards = ({ recipe }) => {
+const Cards = ({ recipe  }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const handleFavoirte = () => {
@@ -11,7 +11,7 @@ const Cards = ({ recipe }) => {
   };
 
   return (
-    <div className="card w-96 bg-base-100 shadow-xl relative mt-10">
+    <div className="card bg-base-100 shadow-xl mx-5  relative mt-10 md:my-[1px]">
       <div
         onClick={handleFavoirte}
         className={`rating gap-1 absolute top-2 right-2 p-3 
