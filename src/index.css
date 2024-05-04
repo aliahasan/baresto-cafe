@@ -35,3 +35,6 @@ header {
   text-underline-offset: 5px;
   color: #39db4a;
 }
+.side {
+  z-index: 10001 !important;
+}

@@ -14,7 +14,8 @@ const router = createBrowserRouter([
         },
         {
           path: '/menu',
-          element:<Menu></Menu>
+          element:<Menu></Menu>,
+          loader: () => fetch('http://localhost:5000/api/v1/foodsCount')
         }
     ]
   },
