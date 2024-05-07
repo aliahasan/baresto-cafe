@@ -21,7 +21,7 @@ const Menu = () => {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["foods", category, price , currentPage, itemsPerPage],
+    queryKey: ["foods", category, price, currentPage, itemsPerPage],
     queryFn: async () =>
       myAxios.get(
         `/allfoods?category=${category}&sortField=price&sortOrder=${price}&page=${currentPage}&limit=${itemsPerPage}`
@@ -115,12 +115,12 @@ const Menu = () => {
           </div>
         )}
       </div>
-      <div className="text-center justify-center items-center flex flex-wrap flex-row gap-5">
+      <div className="text-center justify-center items-center flex flex-wrap flex-row gap-5 mt-8" >
         <button onClick={() => handleButton("prev")} className="btn">
           Prev
         </button>
         {pages.map((page, index) => (
-          <button 
+          <button
             className={`${currentPage === page ? "bg-green" : ""} btn`}
             key={index}
             onClick={() => setCurrentPage(page)}

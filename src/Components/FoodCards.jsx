@@ -22,7 +22,7 @@ const FoodCards = ({ food }) => {
         <p className="font-bold text-lg">$ {food.price}</p>
       </div>
       <div className="p-2">
-        <Link to={`${food._id}`}>
+        <Link to={`/food-details/${food._id}`}>
           <button className="btn btn-outline border-none w-full text-white bg-green hover:bg-red-400 transition-all duration-200">
             Details
           </button>
