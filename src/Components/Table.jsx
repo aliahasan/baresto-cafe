@@ -25,7 +25,7 @@ const Table = ({ data }) => {
       <td>{data.price}</td>
       <td>{data.quantity}</td>
       <td>
-        <Link to={``}>
+        <Link to={`/update-data/${data._id}`}>
           <FaEdit className="text-2xl"></FaEdit>
         </Link>
       </td>

@@ -10,7 +10,7 @@ import Order from "../Pages/Order/Order";
 import AddItem from "../Pages/AddItem";
 import MyItems from "../Pages/MyItems";
 import MyOrders from "../Pages/MyOrders";
-
+import UpdateData from "../Pages/UpdateData";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -42,24 +42,39 @@ const router = createBrowserRouter([
           fetch(`http://localhost:5000/api/v1/allfoods/${params.id}`),
       },
       {
-        path:'/additem',
-        element:<PrivateRoute>
-          <AddItem></AddItem>
-        </PrivateRoute>
+        path: "/additem",
+        element: (
+          <PrivateRoute>
+            <AddItem></AddItem>
+          </PrivateRoute>
+        ),
       },
       {
-        path: '/myitems',
-        element:<PrivateRoute>
-          <MyItems></MyItems>,
-        </PrivateRoute>
+        path: "/myitems",
+        element: (
+          <PrivateRoute>
+            <MyItems></MyItems>,
+          </PrivateRoute>
+        ),
       },
       {
-        path:'/myorders',
-        element:<PrivateRoute>
-          <MyOrders></MyOrders>
-        </PrivateRoute>
-      }
-
+        path: "/myorders",
+        element: (
+          <PrivateRoute>
+            <MyOrders></MyOrders>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update-data/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateData></UpdateData>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/api/v1/addeditem/${params.id}`),
+      },
     ],
   },
   {

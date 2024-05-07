@@ -1,56 +1,56 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import useData from "../Hooks/useData";
-import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
-const AddItem = () => {
-  const { user } = useContext(AuthContext);
+const UpdateData = () => {
+  const data = useLoaderData();
+  const navigate = useNavigate()
   const myAxios = useData();
+  const { user } = useContext(AuthContext);
+  const {
+    _id,
+    name,
+    image,
+    category,
+    description,
+    quantity,
+    price,
+    food_origin,
+    made_by,
+  } = data;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
     const form = e.target;
-    const email = user?.email;
-    const name = form.name.value;
-    const image = form.image.value;
-    const category = form.category.value;
-    const description = form.description.value;
-    const quantity = parseInt(form.quantity.value);
-    const price = parseInt(form.price.value);
-    const food_origin = form.food_origin.value;
-    const made_by = form.made_by.value;
-
-    const data = {
-      email,
-      name,
-      image,
-      category,
-      description,
-      quantity,
-      price,
-      food_origin,
-      made_by,
+    const updateData = {
+      name: form.name.value,
+      image: form.image.value,
+      category: form.category.value,
+      description: form.description.value,
+      quantity: parseInt(form.quantity.value),
+      price: parseInt(form.price.value),
+      food_origin: form.food_origin.value,
+      made_by: form.made_by.value,
     };
-
-    myAxios.post("/additem", data).then((res) => {
-      console.log(res.data);
-      if (res.data.insertedId) {
+    e.preventDefault();
+    const response = await myAxios.put(`/update/${_id}`, updateData);
+    const responseData = await response.data;
+    if(responseData.modifiedCount  > 0){
         Swal.fire({
-          title: "Success",
-          text: "item added successfully",
-          icon: "success",
-        });
-      }
-    });
+            title: "Success",
+            text: "Data updated successfully",
+            icon: "success",
+          });
 
-    e.target.reset();
+          navigate('/myitems')
+    }
   };
 
   return (
     <div>
       <div className="text-2xl md:text-4xl lg:text-5xl text-center py-4">
-        <h1 className=" pb-8">Add a food Item</h1>
+        <h1 className=" pb-8">Update you data</h1>
       </div>
       <div className=" container mx-auto max-w-6xl flex justify-center items-center">
         <div className="card shrink-0 w-full max-w-2xl shadow-2xl bg-base-100">
@@ -78,6 +78,7 @@ const AddItem = () => {
                 className="input input-bordered"
                 required
                 name="name"
+                defaultValue={name}
               />
             </div>
             <div className="form-control">
@@ -90,6 +91,7 @@ const AddItem = () => {
                 className="input input-bordered"
                 required
                 name="image"
+                defaultValue={image}
               />
             </div>
             <div className="form-control">
@@ -102,6 +104,7 @@ const AddItem = () => {
                 className="input input-bordered"
                 required
                 name="category"
+                defaultValue={category}
               />
             </div>
             <div className="form-control">
@@ -112,6 +115,7 @@ const AddItem = () => {
                 className="textarea textarea-bordered"
                 placeholder="Enter some description"
                 name="description"
+                defaultValue={description}
                 required
               ></textarea>
             </div>
@@ -125,6 +129,7 @@ const AddItem = () => {
                 className="input input-bordered"
                 required
                 name="quantity"
+                defaultValue={quantity}
               />
             </div>
             <div className="form-control">
@@ -138,6 +143,7 @@ const AddItem = () => {
                 className="input input-bordered"
                 required
                 name="price"
+                defaultValue={price}
               />
             </div>
             <div className="form-control">
@@ -150,6 +156,7 @@ const AddItem = () => {
                 className="input input-bordered"
                 required
                 name="food_origin"
+                defaultValue={food_origin}
               />
             </div>
             <div className="form-control">
@@ -162,12 +169,13 @@ const AddItem = () => {
                 className="input input-bordered"
                 required
                 name="made_by"
+                defaultValue={made_by}
               />
             </div>
 
             <div className="form-control mt-6">
               <button type="submit" className="btn btn-primary">
-                Add item
+                Update Item
               </button>
             </div>
           </form>
@@ -177,4 +185,4 @@ const AddItem = () => {
   );
 };
 
-export default AddItem;
+export default UpdateData;
